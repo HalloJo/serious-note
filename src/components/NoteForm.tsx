@@ -1,12 +1,38 @@
-import { Link } from "react-router-dom";
+import { FormEvent, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import CreateableReactSelect from "react-select/creatable";
+import { NoteData, Tag } from "../types";
+import { v4 as uuidV4 } from "uuid";
 
-const NoteForm = () => {
+type NoteFormProps = {
+  onSubmit: (data: NoteData) => void;
+  onAddTag: (tag: Tag) => void;
+  availableTags: Tag[];
+};
+
+const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
+  const titleRef = useRef<HTMLInputElement>(null);
+  const markdownRef = useRef<HTMLTextAreaElement>(null);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const navigate = useNavigate();
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+
+    onSubmit({
+      title: titleRef.current!.value,
+      markdown: markdownRef.current!.value,
+      tags: selectedTags,
+    });
+
+    navigate("..");
+  };
+
   return (
-    <form action="">
+    <form action="" onSubmit={handleSubmit}>
       <div className="noteForm__inputWrapper">
         <label htmlFor="title">Title</label>
-        <input type="text" name="title" id="title" required />
+        <input ref={titleRef} type="text" name="title" id="title" required />
       </div>
       <div className="noteForm__inputWrapper">
         <label htmlFor="tag">Tag</label>
@@ -18,12 +44,36 @@ const NoteForm = () => {
               backgroundColor: "#242424",
             }),
           }}
+          value={selectedTags.map((tag) => {
+            return { label: tag.label, value: tag.id };
+          })}
+          options={availableTags.map((tag) => {
+            return { label: tag.label, value: tag.id };
+          })}
+          onCreateOption={(label) => {
+            const newTag = { id: uuidV4(), label };
+            onAddTag(newTag);
+            setSelectedTags((previous) => [...previous, newTag]);
+          }}
+          onChange={(tags) => {
+            setSelectedTags(
+              tags.map((tag) => {
+                return { label: tag.label, id: tag.value };
+              })
+            );
+          }}
           isMulti
         />
       </div>
       <div className="noteForm__inputWrapper">
         <label htmlFor="markdown">Body</label>
-        <textarea name="markdown" id="markdown" required rows={15} />
+        <textarea
+          ref={markdownRef}
+          name="markdown"
+          id="markdown"
+          required
+          rows={15}
+        />
       </div>
       <div className="noteForm__buttonWrapper">
         <button className="noteForm__buttonPrimary" type="submit">
