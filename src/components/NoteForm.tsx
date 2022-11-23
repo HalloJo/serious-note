@@ -8,12 +8,19 @@ type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
-};
+} & Partial<NoteData>;
 
-const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
+const NoteForm = ({
+  onSubmit,
+  onAddTag,
+  availableTags,
+  title = "",
+  markdown = "",
+  tags = [],
+}: NoteFormProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
   const navigate = useNavigate();
 
   const handleSubmit = (event: FormEvent) => {
@@ -32,7 +39,14 @@ const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
     <form action="" onSubmit={handleSubmit}>
       <div className="noteForm__inputWrapper">
         <label htmlFor="title">Title</label>
-        <input ref={titleRef} type="text" name="title" id="title" required />
+        <input
+          ref={titleRef}
+          type="text"
+          name="title"
+          id="title"
+          defaultValue={title}
+          required
+        />
       </div>
       <div className="noteForm__inputWrapper">
         <label htmlFor="tag">Tag</label>
@@ -73,6 +87,7 @@ const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
           id="markdown"
           required
           rows={15}
+          defaultValue={markdown}
         />
       </div>
       <div className="noteForm__buttonWrapper">
