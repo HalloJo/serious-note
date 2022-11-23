@@ -1,5 +1,7 @@
 :root {
+    --color-dark-black: #00000040;
     --color-black: #242424;
+    --color-black-opacity: #242424CC;
     --color-blue: #61dafbaa;
     --color-purple-light: #646cff;
     --color-purple: #535bf2;
@@ -15,13 +17,22 @@ button {
     background-color: var(--color-black);
     cursor: pointer;
     transition: border-color 0.25s;
+    border: solid 1px var(--color-dark-black)
   }
   button:hover {
-    border-color: var(--color-purple);
+    border-color: var(--color-purple-light);
   }
   button:focus,
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
+  }
+
+  input {
+    padding: 0.9em 1.2em;
+    border-radius: 25px;
+    border: solid 1px var(--color-purple);
+    background-color: transparent;
+    // outline: 4px auto -webkit-focus-ring-color;
   }
 
   
