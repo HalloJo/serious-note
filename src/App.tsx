@@ -1,12 +1,14 @@
 import { useMemo } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import NewNote from "./components/NewNote";
+import NotesLayout from "./components/NotesLayout";
 import "./scss/App.scss";
 import "./scss/globals.scss";
 import { NoteData, RawNote, Tag } from "./types";
 import { useLocalStorage } from "./useLocalStorage";
 import { v4 as uuidV4 } from "uuid";
 import NotesList from "./components/NotesList";
+import Note from "./components/Note";
 
 const App = () => {
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
@@ -51,8 +53,8 @@ const App = () => {
             />
           }
         />
-        <Route path="/:id">
-          <Route index element={<h1>Show</h1>} />
+        <Route path="/:id" element={<NotesLayout notes={notesWithTags} />}>
+          <Route index element={<Note />} />
           <Route path="edit" element={<h1>Edit</h1>} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
