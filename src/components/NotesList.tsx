@@ -120,7 +120,7 @@ const NotesList = ({
           </div>
         </form>
       </header>
-      <div>
+      <div className={styles.notesList__notes}>
         {filteredNotes.map((note) => (
           <NoteCard
             key={note.id}
