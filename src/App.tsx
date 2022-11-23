@@ -59,12 +59,37 @@ const App = () => {
     setTags((previous) => [...previous, tag]);
   };
 
+  const updateTag = (id: string, label: string) => {
+    setTags((previousTags) => {
+      return previousTags.map((tag) => {
+        if (tag.id === id) {
+          return { ...tag, label };
+        } else {
+          return tag;
+        }
+      });
+    });
+  };
+
+  const deleteTag = (id: string) => {
+    setTags((previousTags) => {
+      return previousTags.filter((tag) => tag.id !== id);
+    });
+  };
+
   return (
     <div className="App">
       <Routes>
         <Route
           path="/"
-          element={<NotesList availableTags={tags} notes={notesWithTags} />}
+          element={
+            <NotesList
+              availableTags={tags}
+              notes={notesWithTags}
+              updateTag={updateTag}
+              deleteTag={deleteTag}
+            />
+          }
         />
         <Route
           path="/new"

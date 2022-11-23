@@ -2,16 +2,25 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
 import { Tag, Note, SimplifiedNote } from "../types";
+import EditTagsModal from "./EditTagsModal";
 import NoteCard from "./NoteCard";
 
 type NoteListProps = {
   availableTags: Tag[];
   notes: SimplifiedNote[];
+  updateTag: (id: string, label: string) => void;
+  deleteTag: (id: string) => void;
 };
 
-const NotesList = ({ availableTags, notes }: NoteListProps) => {
+const NotesList = ({
+  availableTags,
+  notes,
+  deleteTag,
+  updateTag,
+}: NoteListProps) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
+  const [show, setShow] = useState(false);
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
@@ -36,7 +45,7 @@ const NotesList = ({ availableTags, notes }: NoteListProps) => {
               Create
             </button>
           </Link>
-          <button>Edit tags</button>
+          <button onClick={() => setShow(true)}>Edit tags</button>
         </div>
         <form action="">
           <div className="noteForm__inputWrapper">
@@ -88,6 +97,15 @@ const NotesList = ({ availableTags, notes }: NoteListProps) => {
           />
         ))}
       </div>
+      {show && (
+        <EditTagsModal
+          show={show}
+          handleClose={() => setShow(false)}
+          deleteTag={deleteTag}
+          updateTag={updateTag}
+          availableTags={availableTags}
+        />
+      )}
     </>
   );
 };
