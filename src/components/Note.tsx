@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useNote } from "./NotesLayout";
+import ReactMarkdown from "react-markdown";
 
 const Note = () => {
   const note = useNote();
@@ -25,6 +26,7 @@ const Note = () => {
           Back
         </button>
       </Link>
+      <ReactMarkdown>{note.markdown}</ReactMarkdown>
     </>
   );
 };
