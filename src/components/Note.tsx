@@ -1,9 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useNote } from "./NotesLayout";
 import ReactMarkdown from "react-markdown";
 
-const Note = () => {
+type NoteProps = {
+  onDelete: (id: string) => void;
+};
+
+const Note = ({ onDelete }: NoteProps) => {
   const note = useNote();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -20,7 +25,14 @@ const Note = () => {
           Edit
         </button>
       </Link>
-      <button>Delete</button>
+      <button
+        onClick={() => {
+          onDelete(note.id);
+          navigate("/");
+        }}
+      >
+        Delete
+      </button>
       <Link to="/">
         <button className="notesList__buttonPrimary" type="button">
           Back
