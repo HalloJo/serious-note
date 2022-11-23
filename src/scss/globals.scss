@@ -5,6 +5,7 @@
     --color-blue: #61dafbaa;
     --color-purple-light: #646cff;
     --color-purple: #535bf2;
+    --color-pink: #e611d7;
 }
 
 button {
@@ -28,11 +29,19 @@ button {
   }
 
   input {
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 15px;
     padding: 0.9em 1.2em;
     border-radius: 25px;
     border: solid 1px var(--color-purple);
     background-color: transparent;
-    // outline: 4px auto -webkit-focus-ring-color;
+
+    box-sizing: border-box;
+    width: 100%;
+
+    @media (min-width: 1024px) {
+        min-width: 300px;
+    }
   }
 
   

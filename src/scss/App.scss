@@ -3,16 +3,4 @@
   margin: 0 auto;
 }
 
-.noteForm {
-  &__inputWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  &__select {
-    background-color: var(--color-purple);
-  }
-  &__buttonPrimary {
-    background-color: var(--color-purple);
-  }
-}
+

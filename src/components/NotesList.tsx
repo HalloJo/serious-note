@@ -54,26 +54,52 @@ const NotesList = ({
             <button onClick={() => setShow(true)}>Edit tags</button>
           </div>
         </div>
-        <form action="">
-          <div className="noteForm__inputWrapper">
-            <label htmlFor="title">Title</label>
+        <form className={styles.notesList__form} action="">
+          <div className={styles.notesList__inputWrapper}>
             <input
               type="text"
               name="title"
               id="title"
               value={title}
+              placeholder="Filter on title here.."
               onChange={(event) => setTitle(event.target.value)}
               required
             />
           </div>
           <div className="noteForm__inputWrapper">
-            <label htmlFor="tag">Tag</label>
             <ReactSelect
+              placeholder="Filter on tags here.."
               styles={{
                 control: (baseStyles) => ({
                   ...baseStyles,
-                  borderColor: "rgb(118, 118, 118)",
+                  borderColor: "#535bf2",
                   backgroundColor: "#242424",
+                  borderRadius: "25px",
+                  padding: "0.4rem 0.4rem",
+                  fontSize: "15px",
+                }),
+                menu: (baseStyles) => ({
+                  ...baseStyles,
+                  color: "#fff",
+                  backgroundColor: "#242424",
+                  border: "#535bf2",
+                }),
+                option: (baseStyles) => ({
+                  ...baseStyles,
+                  backgroundColor: "#242424",
+                  ":hover": {
+                    backgroundColor: "#535bf2",
+                  },
+                }),
+                multiValue: (baseStyles) => ({
+                  ...baseStyles,
+                  backgroundColor: "#e611d7",
+                  borderRadius: "20px",
+                  padding: "0px 5px",
+                }),
+                multiValueLabel: (baseStyles) => ({
+                  ...baseStyles,
+                  color: "#fff",
                 }),
               }}
               value={selectedTags.map((tag) => {
