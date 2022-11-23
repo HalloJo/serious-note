@@ -1,8 +1,6 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
 .noteForm {
@@ -14,12 +12,6 @@
   &__select {
     background-color: var(--color-purple);
   }
-  &__buttonPrimary {
-    background-color: var(--color-purple);
-  }
-}
-
-.notesList {
   &__buttonPrimary {
     background-color: var(--color-purple);
   }

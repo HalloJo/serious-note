@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
 import { Tag, Note, SimplifiedNote } from "../types";
 import EditTagsModal from "./EditTagsModal";
+import Logo from "./Logo";
 import NoteCard from "./NoteCard";
+import styles from "../scss/Noteslist.module.scss";
 
 type NoteListProps = {
   availableTags: Tag[];
@@ -37,15 +39,20 @@ const NotesList = ({
 
   return (
     <>
-      <header className="notesList__header">
-        <h1 className="notesList__title">On a more serious note.</h1>
-        <div className="notesList__buttonWrapper">
-          <Link to="/new">
-            <button className="notesList__buttonPrimary" type="button">
-              Create
-            </button>
-          </Link>
-          <button onClick={() => setShow(true)}>Edit tags</button>
+      <header className={styles.notesList}>
+        <div className={styles.notesList__header}>
+          <Logo />
+          <div className={styles.notesList__buttons}>
+            <Link to="/new">
+              <button
+                className={`${styles.notesList__primary} ${styles.notesList__button}`}
+                type="button"
+              >
+                Create note.
+              </button>
+            </Link>
+            <button onClick={() => setShow(true)}>Edit tags</button>
+          </div>
         </div>
         <form action="">
           <div className="noteForm__inputWrapper">
