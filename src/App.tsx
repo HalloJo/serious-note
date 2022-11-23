@@ -6,6 +6,7 @@ import "./scss/globals.scss";
 import { NoteData, RawNote, Tag } from "./types";
 import { useLocalStorage } from "./useLocalStorage";
 import { v4 as uuidV4 } from "uuid";
+import NotesList from "./components/NotesList";
 
 const App = () => {
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
@@ -36,7 +37,10 @@ const App = () => {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<h1>On a more serious note.</h1>} />
+        <Route
+          path="/"
+          element={<NotesList availableTags={tags} notes={notesWithTags} />}
+        />
         <Route
           path="/new"
           element={
