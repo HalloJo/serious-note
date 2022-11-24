@@ -1,51 +1,51 @@
 .noteCard {
-    text-decoration: none; 
-    
+  text-decoration: none;
+
+  @media (min-width: 1024px) {
+  }
+
+  &__wrapper {
+    border: 1px solid var(--color-purple-light);
+    background-color: var(--color-purple);
+    padding: 1rem;
+    border-radius: 15px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     @media (min-width: 1024px) {
+      padding: 1.5rem;
+      transition: all 0.25s;
+
+      &:hover {
+        border: 1px solid var(--color-white);
+        box-shadow: 0px 7px 19px 0px rgba(73, 67, 255, 0.685);
+      }
     }
+  }
 
-    &__wrapper {
-        border: 1px solid var(--color-purple-light);
-        background-color: var(--color-purple);
-        padding: 1rem;
-        border-radius: 15px;  
-        height: 100%;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+  &__title {
+    margin: 0 0 1rem 0;
+    color: var(--color-white);
+  }
 
-        @media (min-width: 1024px) {
-            padding: 1.5rem;
-            transition: all 0.25s;
+  &__tagList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+  }
 
-            &:hover {
-                border: 1px solid var(--color-white);
-                box-shadow: 0px 7px 19px 0px rgba(73, 67, 255, 0.685);
-            }
-        }
-    }
-
-    &__title {
-        margin: 0 0 1rem 0;
-        color: var(--color-white)
-    }
-
-    &__tagList {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        gap: 0.3rem;
-        flex-wrap: wrap;
-    }
-
-    &__tag {
-        background-color: var(--color-pink);
-        width: fit-content;
-        padding: 0.2rem 0.5rem;
-        border-radius: 20px;
-        font-size: 14px;
-        color: var(--color-white)
-    }
+  &__tag {
+    background-color: var(--color-pink);
+    width: fit-content;
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-size: 14px;
+    color: var(--color-white);
+  }
 }
