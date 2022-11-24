@@ -130,6 +130,11 @@ const NotesList = ({
           />
         ))}
       </div>
+      {notes.length === 0 && (
+        <h1 className={styles.notesList__message}>
+          No serious notes yet. Create one, quick!
+        </h1>
+      )}
       {show && (
         <EditTagsModal
           show={show}
