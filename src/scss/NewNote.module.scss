@@ -1,0 +1,16 @@
+.newNote {
+  padding: 2rem;
+  box-sizing: border-box;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+    margin: 0 0 2rem 0;
+    line-height: 0.8;
+  }
+}
