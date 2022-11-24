@@ -9,6 +9,7 @@
   --color-dark-purple: #171b64;
   --color-pink: #e611d7;
   --color-red: #e61151;
+  --color-dark-red: #a20d3a;
 }
 
 button {
@@ -56,4 +57,9 @@ textarea {
   padding: 1rem;
   font-size: 15px;
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+}
+
+h3 {
+  font-family: "American Typewriter";
+  font-weight: 400;
 }

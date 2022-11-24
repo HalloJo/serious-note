@@ -1,6 +1,7 @@
 import { NoteData, Tag } from "../types";
 import NoteForm from "./NoteForm";
 import { useNote } from "./NotesLayout";
+import styles from "../scss/EditNote.module.scss";
 
 type EditNoteProps = {
   onSubmit: (id: string, data: NoteData) => void;
@@ -12,8 +13,8 @@ const EditNote = ({ onSubmit, onAddTag, availableTags }: EditNoteProps) => {
   const note = useNote();
 
   return (
-    <>
-      <h1>Edit note.</h1>
+    <div className={styles.editNote}>
+      <h1 className={styles.editNote__title}>Edit note.</h1>
       <NoteForm
         title={note.title}
         markdown={note.markdown}
@@ -22,7 +23,7 @@ const EditNote = ({ onSubmit, onAddTag, availableTags }: EditNoteProps) => {
         onAddTag={onAddTag}
         availableTags={availableTags}
       />
-    </>
+    </div>
   );
 };
 
